@@ -51,7 +51,7 @@ should_offer(Sock) ->
 init(Sock) ->
     Username = case rabbit_net:peercert(Sock) of
                    {ok, C} ->
-                       case rabbit_ssl:peer_cert_auth_name(C) of
+                       case rabbit_ssl:peer_cert_auth_name(C, Sock) of
                            unsafe    -> {refused, "configuration unsafe", []};
                            not_found -> {refused, "no name found", []};
                            Name      -> Name
