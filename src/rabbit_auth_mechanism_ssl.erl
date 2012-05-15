@@ -49,17 +49,12 @@ should_offer(Sock) ->
     end.
 
 init(Sock) ->
-    Username = case rabbit_net:peercert(Sock) of
-                   {ok, C} ->
-                       case rabbit_ssl:peer_cert_auth_name(C, Sock) of
-                           unsafe    -> {refused, "configuration unsafe", []};
-                           not_found -> {refused, "no name found", []};
-                           Name      -> Name
-                       end;
-                   {error, no_peercert} ->
-                       {refused, "no peer certificate", []};
-                   nossl ->
-                       {refused, "not SSL connection", []}
+    Username = case rabbit_ssl:peer_cert_auth_name(Sock) of
+                   unsafe      -> {refused, "configuration unsafe", []};
+                   not_found   -> {refused, "no name found", []};
+                   no_peercert -> {refused, "no peer certificate", []};
+                   nossl       -> {refused, "not SSL connection", []};
+                   Name        -> Name
                end,
     #state{username = Username}.
 
