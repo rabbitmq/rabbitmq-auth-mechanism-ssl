@@ -1,5 +1,12 @@
 # x509 (TLS/SSL) certificate Authentication Mechanism for RabbitMQ
 
+## This was migrated to https://github.com/rabbitmq/rabbitmq-server
+
+This repository has been moved to the main unified RabbitMQ "monorepo", including all open issues. You can find the source under [/deps/rabbitmq_auth_mechanism_ssl](https://github.com/rabbitmq/rabbitmq-server/tree/master/deps/rabbitmq_auth_mechanism_ssl).
+All issues have been transferred.
+
+## Overview
+
 This plugin allows RabbitMQ clients authenticate using x509 certificates
 and TLS (PKI) [peer verification mechanism](https://tools.ietf.org/html/rfc5280#section-6)
 instead of credentials (username/password pairs).
